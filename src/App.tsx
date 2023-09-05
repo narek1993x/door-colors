@@ -15,15 +15,14 @@ function App() {
   ]);
   const [newDoor, setNewDoor] = React.useState({ color: "", code: ""});
 
-
   const handleNewDoor = (event) => {
     setNewDoor(oldDoor => ({ ...oldDoor, [event.target.name]: event.target.value}));
-  }
+  };
 
   const handleAddDoor = () => {
     setDoors(oldDoors => ([newDoor, ...oldDoors]));
     setNewDoor({ color: "", code: ""});
-  }
+  };
 
   return (
     <div className="App">
