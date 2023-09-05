@@ -5,14 +5,25 @@
 }
 
 .doors {
-  --gap: 152px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
-  width: calc(100% + var(--gap));
+  width: 100%;
+  gap: 60px 152px;
 }
 
-.doors > * {
-  margin: var(--gap) 0 0 var(--gap);
+.create-door {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.create-door-input {
+  display: flex;
+  margin-bottom: 6px;
+}
+
+.create-door-input label {
+  margin-right: 6px;
 }
