@@ -28,20 +28,20 @@ function getDoors(): IDoor[] {
 
 function App() {
   const [doors, setDoors] = React.useState(getDoors());
-  const [newDoor, setNewDoor] = React.useState({ color: "", code: ""});
+  const [newDoor, setNewDoor] = React.useState({ color: "", code: "" });
 
-  const handleNewDoor = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewDoor(oldDoor => {
-      const newDoors = { ...oldDoor, [event.target.name]: event.target.value};
+  const handleNewDoorInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewDoor((oldDoor) => ({ ...oldDoor, [event.target.name]: event.target.value }));
+  };
+
+  const handleAddDoor = () => {
+    setDoors((oldDoors) => {
+      const newDoors = [newDoor, ...oldDoors];
       localStorage.setItem("doors", JSON.stringify(newDoors));
 
       return newDoors;
     });
-  };
-
-  const handleAddDoor = () => {
-    setDoors(oldDoors => ([newDoor, ...oldDoors]));
-    setNewDoor({ color: "", code: ""});
+    setNewDoor({ color: "", code: "" });
   };
 
   return (
@@ -49,16 +49,20 @@ function App() {
       <div className="create-door">
         <div className="create-door-input">
           <label htmlFor="color">Color</label>
-          <input type="string" value={newDoor.color} name="color" id="color" onChange={handleNewDoor} />
+          <input type="string" value={newDoor.color} name="color" id="color" onChange={handleNewDoorInfo} />
         </div>
         <div className="create-door-input">
           <label htmlFor="code">Code</label>
-          <input type="string" value={newDoor.code} name="code" id="code" onChange={handleNewDoor} />
+          <input type="string" value={newDoor.code} name="code" id="code" onChange={handleNewDoorInfo} />
         </div>
-        <button disabled={!newDoor.color || !newDoor.code} onClick={handleAddDoor}>Add Door</button>
+        <button disabled={!newDoor.color || !newDoor.code} onClick={handleAddDoor}>
+          Add Door
+        </button>
       </div>
       <div className="doors">
-        {doors.map(door =><Door key={door.code} color={door.color} code={door.code} /> )}
+        {doors.map((door) => (
+          <Door key={door.code} color={door.color} code={door.code} />
+        ))}
       </div>
     </div>
   );
