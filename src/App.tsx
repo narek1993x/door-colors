@@ -5,9 +5,11 @@ import "./App.css";
 function App() {
   const [doors, setDoors] = React.useState([
     { color: "#00243C", code: "420 Baltika" },
+    { color: "#070302", code: "793 Temno Korich" },
+    { color: "#816951", code: "509 Temno Bejeva" },
     { color: "#437983", code: "427 Sero Goluboy" },
-    { color: "#1E819E", code: "425 Adriatika" },
     { color: "#08605D", code: "417 Picunda" },
+    { color: "#1E819E", code: "425 Adriatika" },
     { color: "#08588C", code: "470 Bosfor" },
     { color: "#34496F", code: "464 Valentina" },
   ]);
