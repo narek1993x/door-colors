@@ -44,6 +44,17 @@ function App() {
     setNewDoor({ color: "", code: "" });
   };
 
+  const handleRemoveDoor = (index: number, door: IDoor) => () => {
+    if (window.confirm(`Do you like to delete door with code '${door.code}'?`)) {
+      setDoors((oldDoors) => {
+        const newDoors = oldDoors.filter((_, doorIndex) => doorIndex !== index);
+        localStorage.setItem("doors", JSON.stringify(newDoors));
+  
+        return newDoors;
+      });
+    }
+  }
+
   return (
     <div className="App">
       <div className="create-door">
@@ -60,8 +71,8 @@ function App() {
         </button>
       </div>
       <div className="doors">
-        {doors.map((door) => (
-          <Door key={door.code} color={door.color} code={door.code} />
+        {doors.map((door, index) => (
+          <Door key={door.code} color={door.color} code={door.code} onRemove={handleRemoveDoor(index, door)} />
         ))}
       </div>
     </div>
